@@ -38,7 +38,6 @@ function fetchHeroLeft() {
 
 // Call the function when needed
 fetchHeroLeft();
-
 function fetchHeroCenter() {
     fetch(`${backendUrl}/news/getAllNews`, {
         method: "GET",
@@ -62,6 +61,9 @@ function fetchHeroCenter() {
                 // Calculate reading time (average reading speed = 200 words per minute)
                 let wordCount = newsItem.description.split(" ").length;
                 let readingTime = Math.ceil(wordCount / 200) || 1; // At least 1 min
+                
+                // Ensure time format is properly extracted
+                let formattedTime = newsItem.time || "N/A"; // If time is missing, show "N/A"
 
                 tbl = `
                 <div role="listitem" class="w-dyn-item">
@@ -76,8 +78,9 @@ function fetchHeroCenter() {
                             <p class="hero-news-text">${newsItem.description}</p>
                             <div class="news-date-wrap">
                                 <div>${formattedDate}</div>
+                               
                                 <div class="date-divider"></div>
-                                <div>${readingTime} min</div> <!-- Dynamic reading time -->
+                                <div>${formattedTime}</div> <!-- Display Time -->
                             </div>
                         </div>
                     </a>
@@ -104,6 +107,11 @@ function fetchHeroRight() {
             console.log(news);
             let tbl = "";
             news.slice(0, 2).map((newsItem) => {  // Only map first 2 items
+                let formattedDate = new Date(newsItem.createdAt).toLocaleDateString("en-US", {
+                    year: "numeric",
+                    month: "long",
+                    day: "numeric",
+                });
                 tbl += `
                <div role="listitem" class="w-dyn-item">
                                 <a data-w-id="ef70b99e-5add-2144-7277-eb50b1d73594"
@@ -111,14 +119,14 @@ function fetchHeroRight() {
                                     class="news-link-v2 w-inline-block">
                                     <div class="news-img-v2"><img alt="News Image" loading="lazy"
                                             style="-webkit-transform:translate3d(0, 0, 0) scale3d(1, 1, 1) rotateX(0) rotateY(0) rotateZ(0) skew(0, 0);-moz-transform:translate3d(0, 0, 0) scale3d(1, 1, 1) rotateX(0) rotateY(0) rotateZ(0) skew(0, 0);-ms-transform:translate3d(0, 0, 0) scale3d(1, 1, 1) rotateX(0) rotateY(0) rotateZ(0) skew(0, 0);transform:translate3d(0, 0, 0) scale3d(1, 1, 1) rotateX(0) rotateY(0) rotateZ(0) skew(0, 0)"
-                                            src="${newsItem.imageUrl}"
+                                            src="${newsItem. imageUrl}"
                                             sizes="(max-width: 479px) 37vw, (max-width: 767px) 38vw, (max-width: 991px) 19vw, 11vw"
                                             srcset="https://assets-global.website-files.com/658fab387c2eeaabe2975079/6593cb2a651ff71ad14809a8_health-thumb-03-p-500.jpg 500w, https://assets-global.website-files.com/658fab387c2eeaabe2975079/6593cb2a651ff71ad14809a8_health-thumb-03-p-800.jpg 800w, https://assets-global.website-files.com/658fab387c2eeaabe2975079/6593cb2a651ff71ad14809a8_health-thumb-03.jpg 824w"
                                             class="news-image" /></div>
                                     <div class="news-data-v2">
                                         <div class="news-category">${newsItem.newsCategory}</div>
                                         <h6 class="post-title">${newsItem.title}</h6>
-                                        <div class="news-date">January 2, 2024</div>
+                                        <div class="news-date">${formattedDate}</div>
                                     </div>
                                 </a>
                             </div>

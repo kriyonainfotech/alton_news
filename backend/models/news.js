@@ -20,6 +20,12 @@ const newsSchema = new mongoose.Schema({
     createdAt: {
         type: Date,
         default: Date.now,
+    },
+    time: {
+        type: String,
+        default: function () {
+            return new Date().toLocaleTimeString(); // Stores the time in HH:MM:SS format
+        }
     }
 });
 const news = mongoose.model('News', newsSchema);
