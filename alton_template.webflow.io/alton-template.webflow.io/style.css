@@ -1,0 +1,52 @@
+
+
+/* Main container */
+.container{
+    width: 100%;
+}
+.AddNews {
+    background: white;
+    padding: 40px;
+    width: 500px;
+    border-radius: 10px;
+    box-shadow: 0px 0px 15px rgba(0, 0, 0, 0.2);
+    text-align: center;
+    margin: 10px auto;
+}
+
+/* Form input groups */
+.input-group {
+    margin-bottom: 15px;
+    text-align: left;
+}
+
+.input-group label {
+    font-weight: bold;
+    display: block;
+    margin-bottom: 5px;
+}
+
+.input-group input,
+.input-group textarea {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 16px;
+}
+
+/* Submit button */
+.submit-btn {
+    background: #888a8b;
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+    transition: 0.3s ease;
+}
+
+.submit-btn:hover {
+    background: rgb(41, 43, 44);
+}
