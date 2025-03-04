@@ -1,4 +1,4 @@
-const News = require("../models/news");
+const News = require("../models/latestNewsModel");
 const cloudinary = require("cloudinary").v2;
 const mongoose = require("mongoose");
 

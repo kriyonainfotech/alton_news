@@ -4,7 +4,7 @@ const multer = require("multer");
 const cloudinary = require("cloudinary").v2;
 const { CloudinaryStorage } = require("multer-storage-cloudinary");
 const { verifyToken } = require("../middleware/Auth");
-const { addNews, getAllNews, deleteNews, updateNews, getNewsById } = require("../controllers/NewsController");
+const { addNews, getAllNews, deleteNews, updateNews, getNewsById } = require("../controllers/PodcastController");
 
 
 cloudinary.config({
@@ -15,7 +15,7 @@ cloudinary.config({
 const storage = new CloudinaryStorage({
   cloudinary: cloudinary,
   params: {
-    folder: "news",
+    folder: "podcast",
     allowed_formats: ["jpg", "png", "jpeg", "webp"],
     transformation: [
       {
@@ -28,9 +28,9 @@ const storage = new CloudinaryStorage({
 });
 const upload = multer({ storage: storage });
 
-router.post("/addNews", upload.single("news"),addNews);
+router.post("/addNews", upload.single("podcast"),addNews);
 router.get("/getAllNews", getAllNews);;
 router.delete("/deleteNews",deleteNews);
 router.get("/getNewsById/:newsId",getNewsById)
-router.put("/updateNews",upload.single("news"),updateNews)
+router.put("/updateNews",upload.single("podcast"),updateNews)
 module.exports = router;

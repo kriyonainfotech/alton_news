@@ -4,7 +4,8 @@ const multer = require("multer");
 const cloudinary = require("cloudinary").v2;
 const { CloudinaryStorage } = require("multer-storage-cloudinary");
 const { verifyToken } = require("../middleware/Auth");
-const { addNews, getAllNews, deleteNews, updateNews, getNewsById } = require("../controllers/NewsController");
+const { addAuthor, deleteAuthor, getAllAuthors, updateAuthor } = require("../controllers/AuthorController");
+
 
 
 cloudinary.config({
@@ -15,7 +16,7 @@ cloudinary.config({
 const storage = new CloudinaryStorage({
   cloudinary: cloudinary,
   params: {
-    folder: "news",
+    folder: "profileImage",
     allowed_formats: ["jpg", "png", "jpeg", "webp"],
     transformation: [
       {
@@ -28,9 +29,9 @@ const storage = new CloudinaryStorage({
 });
 const upload = multer({ storage: storage });
 
-router.post("/addNews", upload.single("news"),addNews);
-router.get("/getAllNews", getAllNews);;
-router.delete("/deleteNews",deleteNews);
-router.get("/getNewsById/:newsId",getNewsById)
-router.put("/updateNews",upload.single("news"),updateNews)
+router.post("/addAuthor", upload.single("profileImage"),addAuthor);
+router.get("/getAllAuthors", getAllAuthors);;
+router.delete("/deleteAuthor",deleteAuthor);
+router.get("/getAllAuthors/:newsId",getAllAuthors)
+router.put("/updateAuthor",upload.single("profileImage"),updateAuthor)
 module.exports = router;

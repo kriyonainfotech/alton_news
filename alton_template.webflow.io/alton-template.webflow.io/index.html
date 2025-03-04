@@ -281,6 +281,7 @@
                                         loading="lazy" alt="Search Icon" /></a>
                             </div>
                             <a href="/newsletter-plans" class="primary-btn">Subscribe</a>
+                            <a href="#" class="secondary-btn" onclick="logout()">logOut</a>
                         </div>
                     </div>
                 </div>
@@ -291,7 +292,7 @@
                         <nav role="navigation" class="nav-menu w-nav-menu"><a href="/podcasts"
                                 class="nav-link">Podcast</a>
                             <div class="w-dyn-list">
-                                <div role="list" class="nav-category w-dyn-items">
+                                <div role="list" class="nav-category w-dyn-items" id="navcat">
                                     <div role="listitem" class="w-dyn-item"><a href="/news-categories/science"
                                             class="nav-link">Science</a></div>
                                     <div role="listitem" class="w-dyn-item"><a href="/news-categories/health"
@@ -790,7 +791,7 @@
             <div class="ln-wrap">
                 <div class="ln-left">
                     <div class="w-dyn-list">
-                        <div role="list" class="w-dyn-items">
+                        <div role="list" class="w-dyn-items" id="latest-Left">
                             <div role="listitem" class="w-dyn-item">
                                 <a data-w-id="b235476d-2e6d-229e-8592-a946b440312b"
                                     href="/news/trailblazers-of-sport-athletes-paving-the-way-for-future-generations"
@@ -818,8 +819,8 @@
                 </div>
                 <div class="ln-right">
                     <div class="w-dyn-list">
-                        <div role="list" class="news-list-v3 w-dyn-items">
-                            <div role="listitem" class="w-dyn-item">
+                        <div role="list" class="news-list-v3 w-dyn-items" id="latest-Right">
+                            <!-- <div role="listitem" class="w-dyn-item">
                                 <a data-w-id="82da54f5-63de-d952-ae24-f000150b6cd1"
                                     href="/news/a-detailed-exploration-of-memorable-events-and-the-human-spirit-in-athletics"
                                     class="news-link-v3 w-inline-block">
@@ -869,7 +870,7 @@
                                             international cooperation</h5>
                                     </div>
                                 </a>
-                            </div>
+                            </div> -->
                         </div>
                     </div>
                 </div>
@@ -881,7 +882,7 @@
         <div class="w-layout-blockcontainer container w-container">
             <div class="section-head">
                 <h2 class="single-title">Editor’s Choice</h2>
-                <a data-w-id="d627789b-d059-8acf-372d-ff081ec1bd2f" href="/editors-choice"
+                <a data-w-id="d627789b-d059-8acf-372d-ff081ec1bd2f" href="/alton_template.webflow.io/alton-template.webflow.io/admin.html"
                     class="secondary-btn desktop w-inline-block">
                     <div>Go to Editor&#x27;s Choice</div><img
                         src="https://assets-global.website-files.com/656703e8a0b00cbc0725e176/658fc9ebea40ea08dd22f012_ic-arrow.svg"
@@ -984,7 +985,7 @@
         <div class="w-layout-blockcontainer container w-container">
             <h2 class="section-title">Explore by Categories</h2>
             <div class="w-dyn-list">
-                <div role="list" class="category-list-v2 w-dyn-items">
+                <div role="list" class="category-list-v2 w-dyn-items" id="category">
                     <div role="listitem" class="category-item-v2 w-dyn-item">
                         <a data-w-id="674ad31b-7f93-e987-69ba-8573ccb4af8e" href="/news-categories/politics"
                             class="category-link-v2 w-inline-block">
@@ -1217,8 +1218,8 @@
             <div class="ln-wrap">
                 <div class="ln-left">
                     <div class="w-dyn-list">
-                        <div role="list" class="w-dyn-items">
-                            <div role="listitem" class="w-dyn-item">
+                        <div role="list" class="w-dyn-items" id="podcast-left">
+                            <!-- <div role="listitem" class="w-dyn-item">
                                 <a data-w-id="c84bd005-1adc-6016-ab1f-4a3a24e8fecb"
                                     href="/podcasts/conversations-on-todays-top-stories-bringing-you-up-to-date-reports"
                                     class="ln-link w-inline-block">
@@ -1243,14 +1244,14 @@
                                         </div>
                                     </div>
                                 </a>
-                            </div>
+                            </div> -->
                         </div>
                     </div>
                 </div>
                 <div class="ln-right">
                     <div class="w-dyn-list">
-                        <div role="list" class="news-list-v3 w-dyn-items" id="">
-                            <div role="listitem" class="w-dyn-item">
+                        <div role="list" class="news-list-v3 w-dyn-items" id="podcast-right">
+                            <!-- <div role="listitem" class="w-dyn-item">
                                 <a data-w-id="c84bd005-1adc-6016-ab1f-4a3a24e8fed9"
                                     href="/podcasts/international-collaboration-key-to-combating-emerging-health-threats-scientists"
                                     class="podcast-link w-inline-block">
@@ -1312,7 +1313,7 @@
                                         </div>
                                     </div>
                                 </a>
-                            </div>
+                            </div> -->
                         </div>
                     </div>
                 </div>
@@ -1327,8 +1328,8 @@
             <div class="author-wrap-v2">
                 <div class="author-wrapper">
                     <div class="w-dyn-list">
-                        <div role="list" class="author-list-v2 w-dyn-items">
-                            <div role="listitem" class="author-item-v2 w-dyn-item">
+                        <div role="list" class="author-list-v2 w-dyn-items" id="author-right">
+                            <!-- <div role="listitem" class="author-item-v2 w-dyn-item">
                                 <a data-w-id="92d99ee7-3843-b9b8-dc1b-1e448ee53fce" href="/news-authors/wade-warren"
                                     class="author-link-v2 w-inline-block">
                                     <div class="author-img-v2"><img alt="Author Image" loading="lazy"
@@ -1349,8 +1350,8 @@
                                         </div>
                                     </div>
                                 </a>
-                            </div>
-                            <div role="listitem" class="author-item-v2 w-dyn-item">
+                            </div> -->
+                            <!-- <div role="listitem" class="author-item-v2 w-dyn-item">
                                 <a data-w-id="92d99ee7-3843-b9b8-dc1b-1e448ee53fce" href="/news-authors/devon-lane"
                                     class="author-link-v2 w-inline-block">
                                     <div class="author-img-v2"><img alt="Author Image" loading="lazy"
@@ -1415,7 +1416,7 @@
                                         </div>
                                     </div>
                                 </a>
-                            </div>
+                            </div> -->
                         </div>
                     </div>
                 </div>
@@ -1519,7 +1520,26 @@
         type="text/javascript"></script>
 <script src="../alton-template.webflow.io/scripts/script.js"></script>
 
- 
+<script>
+    async function logout() {
+        try {
+            // Call backend logout API
+            await fetch("http://localhost:3000/auth/logout", {
+                method: "POST",
+                credentials: "include" // Important for handling cookies
+            });
+
+            // Clear localStorage
+            localStorage.removeItem("token");
+            localStorage.removeItem("role");
+
+            // Redirect to login page
+            window.location.href = "login.html";
+        } catch (error) {
+            console.error("Logout failed:", error);
+        }
+    }
+</script>
 
 </body>
 

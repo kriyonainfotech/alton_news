@@ -28,7 +28,7 @@
     <link href="https://fonts.gstatic.com" rel="preconnect" crossorigin="anonymous" />
     <link rel="stylesheet" href="../alton-template.webflow.io/css/shownew.css">
     <!-- style.css  -->
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="../../style.css">
     <script>
         const role = localStorage.getItem("role");
         if (role !== "admin") {
@@ -301,7 +301,7 @@
             <div class="newsTable">
                 <h2>News List</h2>
                 <table id="newsTable">
-                    <thead>
+                    <thead> 
                         <tr>
                             <th>Title</th>
                             <th>Description</th>
@@ -309,10 +309,12 @@
                             <th>Date</th>
                             <th>Time</th>
                             <th>Image</th>
+                            <th>Action</th>
                         </tr>
                     </thead>
                     <tbody>
                         <!-- News items will be inserted here dynamically -->
+                         <!-- <button>Delete</button> -->
                     </tbody>
                 </table>
             </div>
@@ -348,35 +350,77 @@
     }
 </script>
 <script>
-    function fetchNews() {
-        fetch("http://localhost:3000/news/getAllNews")
-            .then(response => response.json())
-            .then(data => {
-                let newsTable = document.querySelector("#newsTable tbody");
-                newsTable.innerHTML = "";
-                
-                data.news.forEach(newsItem => {
-                    let formattedDate = new Date(newsItem.createdAt).toLocaleDateString("en-US", {
-                        year: "numeric", month: "long", day: "numeric"
-                    });
-                    
-                    let row = `
-                        <tr>
-                            <td>${newsItem.title}</td>
-                            <td>${newsItem.description}</td>
-                            <td>${newsItem.newsCategory}</td>
-                            <td>${formattedDate}</td>
-                            <td>${newsItem.time || "N/A"}</td>
-                            <td><img src="${newsItem.imageUrl}" alt="News Image" class="news-img"></td>
-                        </tr>
-                    `;
-                    newsTable.innerHTML += row;
+ function fetchNews() {
+    fetch("http://localhost:3000/news/getAllNews")
+        .then(response => response.json())
+        .then(data => {
+            let newsTable = document.querySelector("#newsTable tbody");
+            newsTable.innerHTML = "";
+
+            data.news.forEach(newsItem => {
+                let formattedDate = new Date(newsItem.createdAt).toLocaleDateString("en-US", {
+                    year: "numeric", month: "long", day: "numeric"
                 });
-            })
-            .catch(error => console.error("Error fetching news:", error));
-    }
-    
-    fetchNews();
+
+                let row = document.createElement("tr");
+                row.innerHTML = `
+                    <td>${newsItem.title}</td>
+                    <td>${newsItem.description}</td>
+                    <td>${newsItem.newsCategory}</td>
+                    <td>${formattedDate}</td>
+                    <td>${newsItem.time || "N/A"}</td>
+                    <td><img src="${newsItem.imageUrl}" alt="News Image" class="news-img"></td>
+                    <td>
+                        <button class="delete-btn" data-id="${newsItem._id}">Delete</button>
+                        <button class="update-btn" data-id="${newsItem._id}">Update</button>
+                    </td>
+                `;
+
+                newsTable.appendChild(row);
+            });
+
+            // Attach event listeners
+            document.querySelectorAll(".delete-btn").forEach(button => {
+                button.addEventListener("click", function () {
+                    let newsId = this.getAttribute("data-id");
+                    deleteNews(newsId);
+                });
+            });
+
+            document.querySelectorAll(".update-btn").forEach(button => {
+                button.addEventListener("click", function () {
+                    let newsId = this.getAttribute("data-id");
+                    window.location.href = `updateNews.html?newsId=${newsId}`;
+                });
+            });
+        })
+        .catch(error => console.error("Error fetching news:", error));
+}
+
+// Function to delete news
+function deleteNews(newsId) {
+    fetch("http://localhost:3000/news/deleteNews", {
+        method: "DELETE",
+        headers: {
+            "Content-Type": "application/json"
+        },
+        body: JSON.stringify({ newsId })
+    })
+    .then(response => response.json())
+    .then(data => {
+        if (data.success) {
+            alert("News deleted successfully!");
+            fetchNews(); // Refresh the news list
+        } else {
+            alert("Error deleting news: " + data.message);
+        }
+    })
+    .catch(error => console.error("Error deleting news:", error));
+}
+
+// Fetch news on page load
+fetchNews();
+
 </script>
 </body>
 </html>

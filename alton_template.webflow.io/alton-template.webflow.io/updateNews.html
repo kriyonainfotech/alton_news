@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Update News</title>
+</head>
+<body>
+    <h2>Update News</h2>
+    <form id="updateForm">
+        <input type="hidden" id="newsId">
+        <label>Title:</label>
+        <input type="text" id="title" required><br>
+        <label>Description:</label>
+        <textarea id="description" required></textarea><br>
+        <label>Category:</label>
+        <input type="text" id="newsCategory" required><br>
+        <label>Image:</label>
+        <input type="file" id="image"><br>
+        <button type="submit">Update News</button>
+    </form>
+
+    <script src="../alton-template.webflow.io/scripts/updateNews.js"></script>
+</body>
+</html>
